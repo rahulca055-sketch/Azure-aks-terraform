@@ -34,3 +34,31 @@ stages:
     - script: |
         terraform plan -var="subscription_id=$(subscription_id)"
       displayName: "Terraform Plan"
+  
+  - job: TerraformApply
+    displayName: "Job 2 - Terraform Apply"
+
+    dependsOn: InitAndValidate
+
+    condition: succeeded()
+
+    pool:
+      name: Default
+      demands:
+      - Agent.Name -equals MANUSREE
+
+    steps:
+
+    - checkout: self
+
+    - script: |
+        terraform version
+      displayName: "Terraform Version"
+
+    - script: |
+        terraform init
+      displayName: "Terraform Init"
+
+    - script: |
+        terraform apply -auto-approve -var="subscription_id=$(subscription_id)"
+      displayName: "Terraform Apply"
