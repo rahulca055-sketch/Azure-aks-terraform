@@ -1,19 +1,19 @@
 trigger:
 - main
 
+pool:
+  name: Default
+  demands:
+  - Agent.Name -equals MANUSREE
+
 stages:
 
 - stage: Terraform_Plan
-  displayName: "Terraform Init and Plan"
+  displayName: Terraform Init and Plan
 
   jobs:
   - job: InitAndValidate
-    displayName: "Terraform Init Validate Plan"
-
-    pool:
-      name: Default
-      demands:
-      - Agent.Name -equals MANUSREE
+    displayName: Terraform Init and Plan
 
     steps:
 
@@ -21,7 +21,7 @@ stages:
 
     - script: |
         terraform version
-      displayName: "Terraform Version"
+      displayName: "Check Terraform Version"
 
     - script: |
         terraform init
