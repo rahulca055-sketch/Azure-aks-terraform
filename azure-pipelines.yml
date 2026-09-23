@@ -4,11 +4,11 @@ trigger:
 stages:
 
 - stage: Terraform_Plan
-  displayName: Terraform Init and Plan
+  displayName: "Terraform Init and Plan"
 
   jobs:
   - job: InitAndValidate
-    displayName: Terraform Init, Validate and Plan
+    displayName: "Terraform Init Validate Plan"
 
     pool:
       name: Default
@@ -21,7 +21,7 @@ stages:
 
     - script: |
         terraform version
-      displayName: "Check Terraform Version"
+      displayName: "Terraform Version"
 
     - script: |
         terraform init
